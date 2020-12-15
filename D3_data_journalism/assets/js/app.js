@@ -285,7 +285,7 @@ d3.csv("assets/data/data.csv").then(function(censusData, err) {
               yAxis = renderYAxes(yLinearScale, yAxis);
             
               // updates circles with new x values
-              circlesGroup = renderYCircles(circlesGroup, yLinearScale, chosenYAxis);
+              circlesGroup = renderCircles(circlesGroup, yLinearScale, chosenYAxis);
             
               // updates text
               textGroup = renderYText(textGroup, yLinearScale, chosenYAxis);
