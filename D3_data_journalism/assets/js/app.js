@@ -329,4 +329,94 @@ d3.csv("assets/data/data.csv").then(function(censusData, err) {
               }
           };
       });
+
+      // Initialize tooltip
+      var toolTip = d3.tip() 
+        .attr("class", "d3-tip")
+        .offset([80, -60])
+        .html(function(d) {
+          return  `${d.state}<br>Poverty: ${d.poverty}<br>Healthcare: ${d.healthcare}<br>`; 
+        });
+
+      // Create tooltip in the chart
+      chartGroup.call(toolTip);
+
+      // Create event listeners to display and hide the tooltip
+      textGroup.on("mouseover", function(data) {
+        toolTip.show(data, this);
+      })
+      // onmouseout event
+      .on("mouseout", function(data) {
+        toolTip.hide(data);
+      });
+});
+
+// function used for updating circles group with new tooltip
+function updateToolTip(chosenXAxis, textGroup, chosenYAxis) {
+
+    var label;
+  
+    if (chosenXAxis === "poverty") {
+      label = "Poverty:";
+    }
+    else if (chosenXAxis === "age") {
+      label = "Age:";
+    }
+    else {
+      label = "Household Income:";
+    }
+  
+    var toolTip = d3.tip()
+      .attr("class", "d3-tip")
+      .offset([80, -60])
+      .html(function(d) {
+        return (`${d.state}<br>${label} ${d[chosenXAxis]} <br>${chosenYAxis}: ${d[chosenYAxis]}<br>`);
+      });
+  
+    chartGroup.call(toolTip);
+  
+    textGroup.on("mouseover", function(data) {
+      toolTip.show(data);
     })
+    // onmouseout event
+    .on("mouseout", function(data, index) {
+      toolTip.hide(data);
+    });
+  
+    return textGroup;
+};
+
+// function used for updating circles group with new tooltip
+function updateYToolTip(chosenYAxis, textGroup, chosenXAxis) {
+
+    var label;
+  
+    if (chosenYAxis === "healthcare") {
+      label = "Healthcare:";
+    }
+    else if (chosenYAxis === "smokes") {
+      label = "Smokes:";
+    }
+    else {
+      label = "Obese:";
+    }
+  
+    var toolTip = d3.tip()
+      .attr("class", "d3-tip")
+      .offset([80, -60])
+      .html(function(d) {
+        return (`${d.state}<br>${chosenXAxis} ${d[chosenXAxis]} <br>${label} ${d[chosenYAxis]}<br>`);
+      });
+  
+    chartGroup.call(toolTip);
+  
+    textGroup.on("mouseover", function(data) {
+      toolTip.show(data);
+    })
+    // onmouseout event
+    .on("mouseout", function(data, index) {
+      toolTip.hide(data);
+    });
+  
+    return textGroup;
+}
