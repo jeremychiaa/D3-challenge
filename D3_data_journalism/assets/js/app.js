@@ -332,7 +332,7 @@ d3.csv("assets/data/data.csv").then(function(censusData, err) {
 
       // Initialize tooltip
       var toolTip = d3.tip() 
-        .attr("class", "d3-tip")
+        .attr("class", "tooltip")
         .offset([80, -60])
         .html(function(d) {
           return  `${d.state}<br>Poverty: ${d.poverty}<br>Healthcare: ${d.healthcare}<br>`; 
@@ -367,7 +367,7 @@ function updateToolTip(chosenXAxis, textGroup, chosenYAxis) {
     }
   
     var toolTip = d3.tip()
-      .attr("class", "d3-tip")
+      .attr("class", "tooltip")
       .offset([80, -60])
       .html(function(d) {
         return (`${d.state}<br>${label} ${d[chosenXAxis]} <br>${chosenYAxis}: ${d[chosenYAxis]}<br>`);
@@ -378,7 +378,8 @@ function updateToolTip(chosenXAxis, textGroup, chosenYAxis) {
     textGroup.on("mouseover", function(data) {
       toolTip.show(data);
     })
-    // onmouseout event
+
+    // on mouseout event
     .on("mouseout", function(data, index) {
       toolTip.hide(data);
     });
@@ -402,7 +403,7 @@ function updateYToolTip(chosenYAxis, textGroup, chosenXAxis) {
     }
   
     var toolTip = d3.tip()
-      .attr("class", "d3-tip")
+      .attr("class", "tooltip")
       .offset([80, -60])
       .html(function(d) {
         return (`${d.state}<br>${chosenXAxis} ${d[chosenXAxis]} <br>${label} ${d[chosenYAxis]}<br>`);
@@ -413,7 +414,8 @@ function updateYToolTip(chosenYAxis, textGroup, chosenXAxis) {
     textGroup.on("mouseover", function(data) {
       toolTip.show(data);
     })
-    // onmouseout event
+
+    // on mouseout event
     .on("mouseout", function(data, index) {
       toolTip.hide(data);
     });
