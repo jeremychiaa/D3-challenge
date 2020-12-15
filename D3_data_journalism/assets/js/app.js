@@ -190,7 +190,7 @@ d3.csv("assets/data/data.csv").then(function(censusData, err) {
               xLinearScale = xScale(censusData, chosenXAxis);
             
               // updates x axis with transition
-              xAxis = renderAxes(xLinearScale, xAxis);
+              xAxis = renderXAxes(xLinearScale, xAxis);
             
               // updates circles with new x values
               circlesGroup = renderCircles(circlesGroup, xLinearScale, chosenXAxis);
@@ -273,7 +273,7 @@ d3.csv("assets/data/data.csv").then(function(censusData, err) {
           var value = d3.select(this).attr("value");
           if (value !== chosenYAxis) {
 
-              // replaces chosenXAxis with value
+              // replaces chosenYAxis with value
               chosenYAxis = value;
 
               // console.log(chosenYAxis)
@@ -329,4 +329,4 @@ d3.csv("assets/data/data.csv").then(function(censusData, err) {
               }
           };
       });
-})
+    })
